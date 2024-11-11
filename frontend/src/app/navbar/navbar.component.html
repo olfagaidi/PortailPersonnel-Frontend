@@ -1,0 +1,47 @@
+
+ <!--header start-->
+ <header class="header black-bg">
+  <div class="sidebar-toggle-box">
+    <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+  </div>
+  <!--logo start-->
+  <a href="https://www.ommp.nat.tn" class="logo"><b>Portail<span>Personnel</span></b></a>
+  <!--logo end-->
+
+  <div class="nav notify-row" id="top_menu">
+   <!--  notification start -->
+   <ul class="nav top-menu" *ngIf="!isLoggedIn">
+     <!-- settings start -->
+     <li class="dropdown">
+       <a class="btn btn1" routerLink="/home">Accueil</a>
+      
+     </li>
+     <!-- settings end -->
+     <!-- inbox dropdown start-->
+    
+     
+   </ul>
+   <!--  notification end -->
+ </div>
+  
+  <div class="top-menu">
+
+   <ul class="nav pull-right top-menu" *ngIf="!isLoggedIn">
+
+
+     <li>
+       <a href="/register" class="logout" routerLink="/register">S'inscrire</a>
+     </li>
+     <li>
+       <a href="/login" class="logout" routerLink="/login">Se connecter</a>
+     </li>
+   </ul>
+
+   
+
+    <ul class="nav pull-right top-menu" *ngIf="isLoggedIn">
+      <li><a class="logout" (click)="logout()">Déconnexion</a></li>
+    </ul>
+  </div>
+</header>
+<!--header end-->

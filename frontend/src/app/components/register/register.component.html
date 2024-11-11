@@ -1,0 +1,177 @@
+<form class="form-login">
+  <div class="card card-container">
+    <h2 class="form-login-heading">inscrivez-vous maintenant</h2>
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+    <div class="login-wrap">
+    
+      <div class="form-row">
+       
+      <div class="col-6">
+        <label for="fname">E-mail</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="form.email"
+          placeholder="Email"
+          required
+          email
+          #email="ngModel"
+          
+          [class.is-invalid]="email.invalid && email.touched"
+        />
+        
+        <div *ngIf="email.errors && (email.invalid || email.touched)">
+          <small class="text-danger" *ngIf="email.errors.required" [class.d-none]=" email.untouched" style="font-size: 11px;"> Champ obligatoire</small>
+          <small class="text-danger" *ngIf="email.errors.email" [class.d-none]=" email.untouched" style="font-size: 11px;"> L'e-mail doit être une adresse e-mail valide</small>
+        </div>
+      </div>
+      <br>
+
+      <div class="col-6">
+        <label for="fname">Date de naissance</label>
+        <input
+          type="Date"
+          class="form-control"
+          name="dateOfBirth"
+          [(ngModel)]="form.dateOfBirth"
+          placeholder="Date of Birth"
+          required
+          minlength="6"
+          #dateOfBirth="ngModel"
+          
+          [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched"
+          
+        />
+        <small class="text-danger" [class.d-none]="dateOfBirth.valid || dateOfBirth.untouched" style="font-size: 11px;">Champ obligatoire</small>
+        
+      </div>
+
+    </div>
+      <br>
+      <div class="form-row">
+      <div class="col-6">
+        <label for="fname">Téléphone</label>
+        <input
+          type="tel"
+          class="form-control"
+          name="phone"
+          placeholder="phone"
+          [(ngModel)]="form.phone"
+          required
+          minlength="8"
+          #phone="ngModel"
+          
+          
+          [class.is-invalid]="phone.invalid && phone.touched"
+          
+        />
+        <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+          <small class="text-danger" *ngIf="phone.errors.required" [class.d-none]=" phone.untouched" style="font-size: 11px;"> Champ obligatoire</small>
+          <small class="text-danger" *ngIf="phone.errors.minlength" [class.d-none]=" phone.untouched" style="font-size: 11px;"> Le numéro de téléphone doit être composé de 8 chiffres</small>
+          
+        </div>
+        
+      </div>
+      <br>
+      <div class="col-6">
+        <label for="fname">Nom d'utilisateur</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          minlength="3"
+          maxlength="20"
+          #username="ngModel"
+          placeholder="username" autofocus=""
+          [class.is-invalid]="username.invalid && username.touched"
+        />
+
+        <div *ngIf="username.errors && (username.invalid || username.touched)">
+          <small class="text-danger" *ngIf="username.errors.required" [class.d-none]=" username.untouched" style="font-size: 11px;"> Champ obligatoire</small>
+          <small class="text-danger" *ngIf="username.errors.minlength" [class.d-none]=" username.untouched" style="font-size: 11px;"> Le nom d'utilisateur doit comporter au moins 3 caractères</small>
+          <small class="text-danger" *ngIf="username.errors.maxlength" [class.d-none]=" username.untouched" style="font-size: 11px;"> Le nom d'utilisateur doit comporter au maximum 20 caractères</small>
+        </div>
+
+      </div>
+    </div>
+      <br>
+      <div class="form-row">
+      <div class="col-6">
+        <label for="fname">Mot de passe</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+          placeholder="password"
+          [class.is-invalid]="password.invalid && password.touched"
+          
+        />
+
+
+        <div *ngIf="password.errors && (password.invalid || password.touched)">
+          <small class="text-danger" *ngIf="password.errors.required" [class.d-none]=" password.untouched" style="font-size: 11px;"> Champ obligatoire</small>
+          <small class="text-danger" *ngIf="password.errors.minlength" [class.d-none]=" password.untouched" style="font-size: 11px;"> Le mot de passe doit contenir au moins 6 caractères</small>
+        </div>
+
+      </div>
+      <br>
+      <div class="col-6">
+        <label for="fname">Confirmez le mot de passe</label>
+        <input
+          type="password"
+          class="form-control"
+          name="repassword"
+          [(ngModel)]="form.repassword"
+          required
+          minlength="6"
+          #repassword="ngModel"
+          placeholder="password"
+          [class.is-invalid]="repassword.invalid && repassword.touched"
+          
+        />
+
+
+        <div *ngIf="repassword.errors && (repassword.invalid || repassword.touched)">
+          <small class="text-danger" *ngIf="repassword.errors.required" [class.d-none]=" repassword.untouched" style="font-size: 11px;"> Champ obligatoire</small>
+          <small class="text-danger" *ngIf="repassword.errors.minlength" [class.d-none]=" repassword.untouched" style="font-size: 11px;"> Le mot de passe doit contenir au moins 6 caractères</small>
+        </div>
+        <div *ngIf="repassword.valid && repassword.value != password.value" class="text-danger">
+          Les mots de passe saisis ne correspondent pas
+      </div>
+
+      </div>
+      </div>
+
+      <br>
+      <div>
+        <button class="btn btn-theme btn-block" (click)="onSubmit()" type="button">
+          <i class="fa fa-lock"></i> S'inscrire</button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        L'inscription a échoué !<br />{{ errorMessage }}
+      </div>
+    </div>
+    </form>
+
+    <div class="success" *ngIf="isSuccessful">
+      vous vous êtes inscrit avec succès
+    </div>
+
+  </div>
+  
+
+</form>

@@ -1,0 +1,47 @@
+
+  <h3><i class="fa fa-angle-right"></i> Bilan des conges des employés</h3>
+  
+  <div>
+    
+        <div >
+          <input type="text" class="form-control" placeholder="Recherche" [(ngModel)]="searchText"/> 
+        </div>
+      
+  <table class="table table-striped">
+
+    <thead class="thead-inverse">
+    <tr>
+      
+      <th>Nom et Prénom </th>
+      <th>Date d'embauche</th>
+      <th>Jours de conges </th>
+      <th>Jours de congé consommés</th>
+      <th>Jours de vacances restants </th>
+      
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employe of employees | filter:searchText | paginate: {itemsPerPage:7, currentPage: p}" >
+          
+            <td>{{employe.prenom}} {{employe.nom}}</td>
+            <td>{{employe.dateEntree}}</td>
+            <td>{{employe.dureeConges}}</td>
+            <td>{{employe.joursConges}}</td>
+            <td>{{employe.soldeConges}}</td>
+
+           
+        </tr>
+    </tbody>
+    
+  </table>
+  <div class="pagination">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+</div>
+
+
+
+
+
+   
+    
